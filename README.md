@@ -1,40 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+# Next Fullstack Starter Template
 
-## Getting Started
+Un template base para **Next.js + TypeScript + Prisma + NextAuth + TailwindCSS**, listo para desarrollo de MVPs y proyectos fullstack.
 
-First, run the development server:
+Incluye:
+- Next.js 14+ con TypeScript
+- TailwindCSS configurado
+- Prisma ORM con Postgres (o SQLite en desarrollo)
+- NextAuth para autenticación de usuarios
+- ESLint + Prettier + plugin de Tailwind para mantener buenas prácticas y consistencia
+- Ejemplo de rewrites en `next.config.ts`
+
+---
+
+## 📦 Requisitos
+
+- Node.js >= 18
+- pnpm (recomendado)
+- PostgreSQL (opcional para producción; SQLite para desarrollo rápido)
+
+---
+
+## ⚡️ Instalación rápida
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Clonar el template
+git clone https://github.com/tu-usuario/next-fullstack-starter.git
+cd next-fullstack-starter
+
+# Instalar dependencias
+pnpm install
+
+# Crear archivo .env
+cp .env.example .env
+# Edita las variables según tu entorno
+🗂 Variables de entorno
+env
+Copiar código
+DATABASE_URL="postgresql://usuario:password@localhost:5432/mi_db"
+NEXTAUTH_SECRET="una_clave_secreta_segura"
+NEXTAUTH_URL="http://localhost:3000"
+Para desarrollo rápido puedes usar SQLite cambiando DATABASE_URL="file:./dev.db" en .env.
+
+🛠 Prisma
+Genera el cliente y crea la base de datos:
+
+bash
+Copiar código
+# Generar cliente Prisma
+pnpm prisma generate
+
+# Crear migraciones y tablas
+pnpm prisma migrate dev --name init
+
+# (Opcional) Sembrar datos de ejemplo
+pnpm prisma db seed
+🔐 NextAuth
+Configurado con adapter Prisma.
+
+Tablas: User, Account, Session, VerificationRequest.
+
+Listo para OAuth o autenticación por email.
+
+🎨 TailwindCSS
+Configuración base lista (tailwind.config.js).
+
+Plugin ESLint para reordenar clases automáticamente.
+
+Compatible con @apply y todas las utilidades de Tailwind.
+
+🧹 ESLint + Prettier
+Formato y linting automáticos al guardar en VSCode.
+
+Reglas configuradas para:
+
+Next.js + TypeScript
+
+React y React Hooks
+
+TailwindCSS (clases ordenadas)
+
+🔀 Rutas amigables (Rewrites)
+Ejemplo en next.config.ts:
+
+ts
+Copiar código
+async rewrites() {
+  return [
+    { source: "/login", destination: "/auth/login" },
+    { source: "/register", destination: "/auth/register" },
+    { source: "/chat", destination: "/chat" },
+    { source: "/onboarding", destination: "/onboarding" },
+  ];
+}
+🚀 Ejecutar proyecto
+bash
+Copiar código
 pnpm dev
-# or
-bun dev
-```
+Abre http://localhost:3000 para ver tu proyecto.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📂 Estructura recomendada
+csharp
+Copiar código
+├─ .vscode/          # Configuración de VSCode
+├─ prisma/           # Schema, migraciones y seeds
+├─ pages/            # Páginas de Next.js
+│   ├─ auth/         # Login, register
+│   ├─ chat/         # Chat
+│   └─ onboarding/   # Onboarding
+├─ components/       # Componentes React
+├─ lib/              # Helpers, utils, imágenes
+└─ public/           # Archivos estáticos
+📌 Notas finales
+Carpeta vacía → agrega .gitkeep si quieres que se mantenga al clonar.
 
-You can start editing the page by modifying `app/route.ts`. The page auto-updates as you edit the file.
+Para producción, usa PostgreSQL; para desarrollo rápido, SQLite funciona bien.
 
-## Learn More
+Puedes añadir nuevas tablas en prisma/schema.prisma y ejecutar pnpm prisma migrate dev.
 
-To learn more about Next.js, take a look at the following resources:
+¡Listo para clonar y comenzar tu MVP fullstack!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+yaml
+Copiar código
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+Si quieres, puedo también hacer la **versión `.env.example` y un seed.ts` listo** para que cualquiera pueda probar usuarios y exámenes de ejemplo al instante.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## API Routes
-
-This directory contains example API routes for the headless API app.
-
-For more details, see [route.js file convention](https://nextjs.org/docs/app/api-reference/file-conventions/route).
+¿Quieres que haga eso?
