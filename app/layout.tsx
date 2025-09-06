@@ -1,16 +1,13 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next'
+import './globals.css'
+import Providers from './providers'
 
 export const metadata: Metadata = {
-  title: "Mi App Next.js",
-  description: "Template básico con App Router",
-};
+  title: 'Mi App Next.js',
+  description: 'Template básico con App Router',
+}
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
       <body>
@@ -19,11 +16,13 @@ export default function RootLayout({
             <h1>Mi App</h1>
           </nav>
         </header>
-        <main>{children}</main>
+        <main>
+          <Providers>{children}</Providers>
+        </main>
         <footer>
           <p>© {new Date().getFullYear()} Mi App</p>
         </footer>
       </body>
     </html>
-  );
+  )
 }
