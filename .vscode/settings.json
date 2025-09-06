@@ -12,7 +12,7 @@
     "**/dist": true
   },
   "prettier.singleQuote": true,
-  "prettier.semi": true,
+  "prettier.semi": false,
   "prettier.trailingComma": "all",
   "prettier.arrowParens": "always",
   "prettier.printWidth": 100,
